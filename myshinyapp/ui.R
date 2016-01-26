@@ -10,21 +10,28 @@ library(shiny)
 shinyUI(fluidPage(
 
   # Application title
-  titlePanel("My shiny app"),
+  titlePanel(h1("Explore Dataset by Scatterplot Matrices")),
 
-  # Sidebar with a slider input for number of bins
-  sidebarLayout(
+  # Sidebar with a select input to choose the dataset and group checkbox
+  # to pick the features. both of them are followed by a button to trigger.
+  sidebarLayout(position="right",
     sidebarPanel(
-      sliderInput("bins",
-                  "Number of bins:",
-                  min = 1,
-                  max = 40,
-                  value = 20)
+      checkboxGroupInput("feature",
+                   "Choose your features:",
+                   choices = names(mtcars),
+                   selected = list("mpg","wt")
+                   ),
+      submitButton("See the plot",
+                   icon("fa fa-bar-chart")
+                   )
     ),
 
-    # Show a plot of the generated distribution
-    mainPanel(
-      plotOutput("distPlot")
+    # Show a plot of the scatterplot matrix with correlation coefficents
+    mainPanel(h3("Scatterplot Matrices"),
+              h5("This application can produce a matrix of scatterplot with correlation coeffiencts of each pair of features"),
+              textOutput("tips"),
+              plotOutput("scatterplotmatrix")
+           
     )
   )
 ))
