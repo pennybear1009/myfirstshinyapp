@@ -43,25 +43,94 @@
     <!-- SLIDES -->
     <slide class="" id="slide-1" style="background:;">
   <hgroup>
-    <h2>Read-And-Delete</h2>
+    <h2>Introduction to my app</h2>
   </hgroup>
   <article data-timings="">
-    <ol>
-<li>Edit YAML front matter</li>
-<li>Write using R Markdown</li>
-<li>Use an empty line followed by three dashes to separate slides!</li>
-</ol>
+    <p>This application can be used to explore mtcars dataset for the correlations of covariates. First, choose the covariates you are willing to explore, and then press the button. Here is it.</p>
+
+<p><img src="shinyapp.png" alt="alt text"></p>
 
   </article>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="class" id="id" style="background:;">
+<slide class="" id="slide-2" style="background:;">
   <hgroup>
-    <h2>Introduction to my shiny app</h2>
+    <h2>Steps to create the app</h2>
   </hgroup>
   <article data-timings="">
-    <p>I create a matrix of scatterplots with mtcars dataset.</p>
+    <ul>
+<li>Design your user interface
+
+<ul>
+<li>Decide the layout</li>
+<li>Choose the widget</li>
+</ul></li>
+<li>Programming to connect all the input and output parameters</li>
+<li>Deploy app on Rstudio&#39;s shiny server</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>ui.R of my app</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><strong>Layout</strong>: <code>sidebarPanel</code> and <code>mainPanel</code> are used to arrange the UI
+
+<ul>
+<li>Sidebar: <code>checkboxGroupInput</code>and <code>submitButton</code> are added for feature selection</li>
+<li>Main panel: <code>plotOutput</code> is added to print the plot, also other user documentations involved as an instrutction.</li>
+</ul></li>
+</ul>
+
+<pre><code>shinyUI(fluidPage(
+  titlePanel(h1(&quot;Explore Dataset by Scatterplot Matrices&quot;)),
+  sidebarLayout(position=&quot;right&quot;,
+    sidebarPanel(
+      checkboxGroupInput(&quot;feature&quot;,&quot;Choose your features:&quot;,
+                choices = names(mtcars),selected = list(&quot;mpg&quot;,&quot;wt&quot;)),
+      submitButton(&quot;See the plot&quot;,icon(&quot;fa fa-bar-chart&quot;))),
+    mainPanel(h3(&quot;Scatterplot Matrices&quot;),
+              h5(&quot;This application can produce a matrix of scatterplot with correlation coeffiencts of each pair of features&quot;),
+              plotOutput(&quot;scatterplotmatrix&quot;),
+              h6(&quot;referrence: R Graphic Cookbook by Winston Chang&quot;)))))
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>server.R of my app</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><code>pairs</code> is used to create the plot output, in the application I refer code from <strong>R Graphic Cookbook</strong> for some advanced presentation(<em>see github for details</em>). The origin code print the following plot:</p>
+
+<pre><code class="r">pairs(mtcars[,1:2])
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-1-1.png" alt="plot of chunk unnamed-chunk-1"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-5" style="background:;">
+  <hgroup>
+    <h2>Deploy on shiny server</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>We use Rstudio to pubulish my application to shinyapps.io.</p>
+
+<p><img src="shinyio.png" alt="alt text"></p>
+
+<p>###Just show you how I create my application, thanks for watching!!</p>
 
   </article>
   <!-- Presenter Notes -->
@@ -73,14 +142,32 @@
     <ul>
       <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=1 title='Read-And-Delete'>
+        data-slide=1 title='Introduction to my app'>
          1
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=2 title='Introduction to my shiny app'>
+        data-slide=2 title='Steps to create the app'>
          2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='ui.R of my app'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='server.R of my app'>
+         4
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=5 title='Deploy on shiny server'>
+         5
       </a>
     </li>
   </ul>

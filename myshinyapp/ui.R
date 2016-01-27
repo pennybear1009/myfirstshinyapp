@@ -29,8 +29,8 @@ shinyUI(fluidPage(
     # Show a plot of the scatterplot matrix with correlation coefficents
     mainPanel(h3("Scatterplot Matrices"),
               h5("This application can produce a matrix of scatterplot with correlation coeffiencts of each pair of features"),
-              textOutput("tips"),
-              plotOutput("scatterplotmatrix")
+              plotOutput("scatterplotmatrix"),
+              h6("referrence: R Graphic Cookbook by Winston Chang")
            
     )
   )
