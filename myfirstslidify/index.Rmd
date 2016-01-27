@@ -43,7 +43,7 @@ shinyUI(fluidPage(
     mainPanel(h3("Scatterplot Matrices"),
               h5("This application can produce a matrix of scatterplot with correlation coeffiencts of each pair of features"),
               plotOutput("scatterplotmatrix"),
-              h6("referrence: R Graphic Cookbook by Winston Chang")))))
+              h6("referrence: R Graphic Cookbook by Winston Chang")))) )
 ```
 
 ---
